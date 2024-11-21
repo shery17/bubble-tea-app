@@ -1,66 +1,35 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Bubble tea app
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About the project.
+This laravel project lets you add your own custom bubble tea from selectable options, which is then saved and shown on the homepage of the website.
 
-## About Laravel
+## How to access the home page
+Use this link http://localhost/bobas to access the main page of the site and from there will be clickable links to guide yourself to the next page.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Description of each page
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Home page
+The main page at http://localhost/bobas showcases the titles of the saved custom bubble tea in the main content as links. The header contains a navigation bar to the home page, add a new boba page and about page. This navigation bar is shown on every webpage.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Add a new boba page
+The add a new boba tea page allows you to create and save your own bubble tea to our database and showcased on the home page as links. There are many selectable options to choose from to make your own boba and will be able to name it yourself.
 
-## Learning Laravel
+Here is a direct link to the add a new boba page: http://localhost/bobas/create.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### About page
+This page provides a brief description about the website.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Here is a direct link to the about page: http://localhost/bobas/about.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Boba showcase page
+Clicking on a boba tea link from the homepage directs you to the showcase page of that individual custom bubble tea. Here it shows what ingredients the custom bubble tea has. There is also and edit and delete button. The edit button directs you to the edit page and delete button removes the saved boba from the database and homepage.
 
-## Laravel Sponsors
+### Edit page
+After clicking on the showcase page from the homepage and clicking the edit button. You can change your selection of ingredients for the custom boba tea and rename it. The save button will update the database and homepage.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Additional features
+### CSS
+I have used CSS to style the webpages to be more colourful for a bubble tea app, I made a fully functional and clean navigation bar and all the webpages have been implemented with web responsive design in mind, shrinking the webpage adjusts the layout of the website. The colours chosen are complimentary to the links and buttons while still being clear and readable.
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Components
+I used a layout component to make the navigation bar appear for every webpage so that all the main pages for the site can be reached from any webpage.
