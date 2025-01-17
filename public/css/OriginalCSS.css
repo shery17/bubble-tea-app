@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Typography */
+
+header {
+    background-color: #344e41;
+    color: whitesmoke;
+}
+
+.subheading {
+    display: block;
+    font-size: 2rem;
+    color: #a3b18a;
+}
+
+li {
+    list-style-type: none;
+    font-size: 1.75rem;
+    padding: 0.4em 0;
+    
+}
+
+ul {
+    padding: 0;
+    padding-bottom: 1em;
+}
+
+nav a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    padding: 0.5em 0;
+}
+
+p {
+    line-height: 1.5;
+}
+
+.section-one h2 {
+    color: darkgreen;
+}
+
+.section-two p {
+    font-size: 1.0em;
+}
+
+.location-link {
+    border-bottom: 2px dotted green;
+    color: green;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #a3b18a;
+}
+
+button {
+    width: 100%;
+    margin-bottom: 1em;
+    padding: 0.6em 1.5em;
+    border: none;
+    border-radius: 4px;
+    color: whitesmoke;
+}
+
+button:hover {
+    background-color: #264653;
+}
+
+.btn-1 {
+    background-color: #2d6a4f;
+}
+
+.btn-2 {
+    background-color: #a3b18a;
+}
+
+/* Layout */
+
+.container {
+    margin: 0 auto;
+    width: 90%;
+    /* max-width: 800px; */
+}
+
+.form-group {
+    display: grid;
+    grid-template-columns: 150px 1fr; /* Adjust label and input width */
+    column-gap: 10px; /* Space between label and input */
+    row-gap: 10px; /* Space between rows */
+    margin-bottom: 20px;
+    align-items: center; /* Vertically align labels and inputs */
+  }
+
+/* Media queries */
+
+@media (max-width: 767px) {
+    header {
+        text-align: center;
+    }
+    li:not(:last-child) {
+        border-bottom: 1px dotted whitesmoke;
+        padding-bottom: 0.5em;
+    }
+}
+
+@media (min-width: 768px) {
+    header .container, nav ul {
+        display: flex;
+    }
+
+    header .container {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav li {
+        margin-left: 1.25em;
+        font-size: 1.5em;
+    }
+
+    button {
+        margin-right: 1em;
+        width: auto;
+    }
+}

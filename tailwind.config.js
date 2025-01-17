@@ -17,4 +17,7 @@ export default {
         },
     },
     plugins: [],
+    corePlugins: {
+        preflight: false, // Disable Tailwind's Preflight
+    },
 };
