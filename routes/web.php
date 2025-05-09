@@ -27,5 +27,5 @@ Route::get('/bobas/{id}', [BobaController::class, 'show'])->name('boba.show');
 Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
 Route::get('/login', [AuthController::class, 'index']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout']);
