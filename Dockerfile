@@ -2,11 +2,11 @@ FROM php:8.2-apache
 
 # System + PHP deps (Postgres)
 RUN apt-get update && apt-get install -y \
-    git unzip libzip-dev curl libpq-dev \
+    git unzip libzip-dev curl \
+    libpq-dev pkg-config \
   && docker-php-ext-install pdo pdo_pgsql zip \
   && a2enmod rewrite \
   && rm -rf /var/lib/apt/lists/*
-
 
 # Apache → Laravel public
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
