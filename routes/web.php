@@ -18,9 +18,8 @@ Route::post('/bobas', [BobaController::class, 'store']);
 Route::get('/bobas/{id}/edit', [BobaController::class, 'edit'])->middleware(['auth', 'can:admin-access']);
 Route::get('/bobas/{id}/addReview', [ReviewController::class, 'create'])->middleware(['auth', 'can:admin-or-user']);
 
-Route::patch('/bobas', [BobaController::class, 'update'])->middleware(['auth', 'can:admin-access']);
-Route::delete('/bobas', [BobaController::class, 'destroy'])->middleware(['auth', 'can:admin-access']);
-
+Route::patch('/bobas/{id}', [BobaController::class, 'update'])->middleware(['auth', 'can:admin-access']);
+Route::delete('/bobas/{id}', [BobaController::class, 'destroy'])->middleware(['auth', 'can:admin-access']);
 
 Route::post('/bobas/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 Route::get('/bobas/{id}', [BobaController::class, 'show'])->name('boba.show');
