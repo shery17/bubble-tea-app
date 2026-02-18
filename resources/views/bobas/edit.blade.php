@@ -1,10 +1,11 @@
 <x-layout title="Edit a boba">
-    <section class="mx-auto mt-10 w-full max-w-xl rounded-xl border bg-white p-8 shadow">
+    <section class="mx-auto mt-10 w-full max-w-xl rounded-xl p-8
+                    dark:bg-slate-900 dark:border-slate-800">
         <header class="mb-6">
-            <h1 class="text-2xl font-semibold text-gray-900">
+            <h1 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">
                 Edit the details for {{ $boba->name }}
             </h1>
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">
                 Update the boba options and save your changes.
             </p>
         </header>
@@ -14,134 +15,109 @@
             @method('PATCH')
 
             <fieldset class="space-y-5">
+                @php
+                    $inputClass = "w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm
+                                   focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20
+                                   dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100";
+                    $labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-200";
+                @endphp
+
                 <div class="space-y-1">
-                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value="{{ old('name', $boba->name) }}"
-                        required
-                        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm
-                               focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-                    >
+                    <label for="name" class="{{ $labelClass }}">Name</label>
+                    <input type="text" id="name" name="name" value="{{ $boba->name }}" class="{{ $inputClass }}">
+                    @error('name') <p class="text-sm font-medium text-red-600">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="space-y-1">
-                    <label for="liquid" class="block text-sm font-medium text-gray-700">Base</label>
-                    <select
-                        id="liquid"
-                        name="liquid"
-                        required
-                        class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm
-                               focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-                    >
-                        <option value="Chocolate Milk Tea" @selected(old('liquid', $boba->liquid) === 'Chocolate Milk Tea')>Chocolate Milk Tea</option>
-                        <option value="Strawberry Milk Tea" @selected(old('liquid', $boba->liquid) === 'Strawberry Milk Tea')>Strawberry Milk Tea</option>
-                        <option value="Banana Milk Tea" @selected(old('liquid', $boba->liquid) === 'Banana Milk Tea')>Banana Milk Tea</option>
-                        <option value="Original Creamer" @selected(old('liquid', $boba->liquid) === 'Original Creamer')>Original Creamer Tea</option>
-                        <option value="Organic Soya Milk" @selected(old('liquid', $boba->liquid) === 'Organic Soya Milk')>Organic Soya Milk Tea</option>
-                        <option value="Organic Oat Milk" @selected(old('liquid', $boba->liquid) === 'Organic Oat Milk')>Organic Oat Milk Tea</option>
-                        <option value="Organic Whole Milk" @selected(old('liquid', $boba->liquid) === 'Organic Whole Milk')>Organic Whole Milk Tea</option>
+                    <label for="liquid" class="{{ $labelClass }}">Base</label>
+                    <select id="liquid" name="liquid" class="{{ $inputClass }}">
+                        <option value="Milk tea" @selected($boba->liquid === 'Milk tea')>Milk tea</option>
+                        <option value="Green tea" @selected($boba->liquid === 'Green tea')>Green tea</option>
+                        <option value="Black tea" @selected($boba->liquid === 'Black tea')>Black tea</option>
+                        <option value="Oolong tea" @selected($boba->liquid === 'Oolong tea')>Oolong tea</option>
+                        <option value="Taro" @selected($boba->liquid === 'Taro')>Taro</option>
                     </select>
-                </div>
-
-                <div class="grid gap-5 sm:grid-cols-2">
-                    <div class="space-y-1">
-                        <label for="cupSize" class="block text-sm font-medium text-gray-700">Cup size</label>
-                        <select
-                            id="cupSize"
-                            name="cupSize"
-                            required
-                            class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm
-                                   focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-                        >
-                            <option value="Large" @selected(old('cupSize', $boba->cupSize) === 'Large')>Large</option>
-                            <option value="Regular" @selected(old('cupSize', $boba->cupSize) === 'Regular')>Regular</option>
-                            <option value="Small" @selected(old('cupSize', $boba->cupSize) === 'Small')>Small</option>
-                        </select>
-                    </div>
-
-                    <div class="space-y-1">
-                        <label for="temperature" class="block text-sm font-medium text-gray-700">Temperature</label>
-                        <select
-                            id="temperature"
-                            name="temperature"
-                            required
-                            class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm
-                                   focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-                        >
-                            <option value="Cold" @selected(old('temperature', $boba->temperature) === 'Cold')>Cold</option>
-                            <option value="Hot" @selected(old('temperature', $boba->temperature) === 'Hot')>Hot</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="grid gap-5 sm:grid-cols-2">
-                    <div class="space-y-1">
-                        <label for="topping" class="block text-sm font-medium text-gray-700">Topping</label>
-                        <select
-                            id="topping"
-                            name="topping"
-                            required
-                            class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm
-                                   focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-                        >
-                            <option value="Pearls" @selected(old('topping', $boba->topping) === 'Pearls')>Pearls</option>
-                            <option value="Pudding" @selected(old('topping', $boba->topping) === 'Pudding')>Pudding</option>
-                            <option value="Coconut Jelly" @selected(old('topping', $boba->topping) === 'Coconut Jelly')>Coconut Jelly</option>
-                            <option value="Aloe Vera" @selected(old('topping', $boba->topping) === 'Aloe Vera')>Aloe Vera</option>
-                        </select>
-                    </div>
-
-                    <div class="space-y-1">
-                        <label for="sugarLevel" class="block text-sm font-medium text-gray-700">Sugar level</label>
-                        <select
-                            id="sugarLevel"
-                            name="sugarLevel"
-                            required
-                            class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm
-                                   focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-                        >
-                            <option value="Regular" @selected(old('sugarLevel', $boba->sugarLevel) === 'Regular')>Regular</option>
-                            <option value="Less" @selected(old('sugarLevel', $boba->sugarLevel) === 'Less')>Less</option>
-                            <option value="None" @selected(old('sugarLevel', $boba->sugarLevel) === 'None')>None</option>
-                        </select>
-                    </div>
+                    @error('liquid') <p class="text-sm font-medium text-red-600">{{ $message }}</p> @enderror
                 </div>
 
                 <div class="space-y-1">
-                    <label for="iceLevel" class="block text-sm font-medium text-gray-700">Ice amount</label>
-                    <select
-                        id="iceLevel"
-                        name="iceLevel"
-                        required
-                        class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm
-                               focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-                    >
-                        <option value="Regular" @selected(old('iceLevel', $boba->iceLevel) === 'Regular')>Regular</option>
-                        <option value="Less" @selected(old('iceLevel', $boba->iceLevel) === 'Less')>Less</option>
-                        <option value="None" @selected(old('iceLevel', $boba->iceLevel) === 'None')>None</option>
+                    <label for="cupSize" class="{{ $labelClass }}">Cup size</label>
+                    <select id="cupSize" name="cupSize" class="{{ $inputClass }}">
+                        <option value="Small" @selected($boba->cupSize === 'Small')>Small</option>
+                        <option value="Medium" @selected($boba->cupSize === 'Medium')>Medium</option>
+                        <option value="Large" @selected($boba->cupSize === 'Large')>Large</option>
                     </select>
+                    @error('cupSize') <p class="text-sm font-medium text-red-600">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="space-y-1">
+                    <label for="temperature" class="{{ $labelClass }}">Temperature</label>
+                    <select id="temperature" name="temperature" class="{{ $inputClass }}">
+                        <option value="Cold" @selected($boba->temperature === 'Cold')>Cold</option>
+                        <option value="Hot" @selected($boba->temperature === 'Hot')>Hot</option>
+                    </select>
+                    @error('temperature') <p class="text-sm font-medium text-red-600">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="space-y-1">
+                    <label for="topping" class="{{ $labelClass }}">Topping</label>
+                    <select id="topping" name="topping" class="{{ $inputClass }}">
+                        <option value="Tapioca pearls" @selected($boba->topping === 'Tapioca pearls')>Tapioca pearls</option>
+                        <option value="Pudding" @selected($boba->topping === 'Pudding')>Pudding</option>
+                        <option value="Jelly" @selected($boba->topping === 'Jelly')>Jelly</option>
+                        <option value="Aloe" @selected($boba->topping === 'Aloe')>Aloe</option>
+                    </select>
+                    @error('topping') <p class="text-sm font-medium text-red-600">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="space-y-1">
+                    <label for="sugarLevel" class="{{ $labelClass }}">Sugar level</label>
+                    <select id="sugarLevel" name="sugarLevel" class="{{ $inputClass }}">
+                        <option value="0%" @selected($boba->sugarLevel === '0%')>0%</option>
+                        <option value="25%" @selected($boba->sugarLevel === '25%')>25%</option>
+                        <option value="50%" @selected($boba->sugarLevel === '50%')>50%</option>
+                        <option value="75%" @selected($boba->sugarLevel === '75%')>75%</option>
+                        <option value="100%" @selected($boba->sugarLevel === '100%')>100%</option>
+                    </select>
+                    @error('sugarLevel') <p class="text-sm font-medium text-red-600">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="space-y-1">
+                    <label for="iceLevel" class="{{ $labelClass }}">Ice amount</label>
+                    <select id="iceLevel" name="iceLevel" class="{{ $inputClass }}">
+                        <option value="No ice" @selected($boba->iceLevel === 'No ice')>No ice</option>
+                        <option value="Less ice" @selected($boba->iceLevel === 'Less ice')>Less ice</option>
+                        <option value="Normal ice" @selected($boba->iceLevel === 'Normal ice')>Normal ice</option>
+                        <option value="Extra ice" @selected($boba->iceLevel === 'Extra ice')>Extra ice</option>
+                    </select>
+                    @error('iceLevel') <p class="text-sm font-medium text-red-600">{{ $message }}</p> @enderror
                 </div>
             </fieldset>
 
-            <div class="flex items-center gap-3 pt-2">
-                <button
-                    type="submit"
-                    class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white
-                           hover:bg-indigo-700 active:bg-indigo-800
+            <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
+                <a
+                    href="/bobas/{{ $boba->id }}"
+                    class="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700
+                           hover:bg-slate-50
                            focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2
+                           dark:bg-slate-900 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800
+                           dark:focus:ring-offset-slate-900
                            transition"
                 >
-                    Save Changes
-                </button>
-
-                <a href="/bobas/{{ $boba->id }}" class="text-sm font-medium text-gray-700 underline underline-offset-4 hover:text-gray-900">
                     Cancel
                 </a>
+
+                <button
+                    type="submit"
+                    class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white
+                           hover:bg-indigo-700 active:bg-indigo-800
+                           focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2
+                           dark:focus:ring-offset-slate-900
+                           transition cursor-pointer"
+                >
+                    Save changes
+                </button>
             </div>
         </form>
     </section>
 </x-layout>
-
