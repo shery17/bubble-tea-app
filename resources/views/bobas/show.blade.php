@@ -14,7 +14,7 @@
             Edit
         </a>
 
-        <form action='/bobas/{{ $boba->id }}'>
+        <form method="POST" action='/bobas/{{ $boba->id }}'>
             @csrf
             @method('DELETE')
             <button class="bg-blue-400 py-2 px-6 border-4 border-blue-700 rounded-lg font-semibold cursor-pointer hover:bg-blue-300" type='submit'>Delete</button>
