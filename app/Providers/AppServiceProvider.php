@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use App\Models\User;
@@ -19,8 +20,13 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
+        // --- Force HTTPS in production ---
+        if (env('APP_ENV') === 'production') {
+            $url->forceScheme('https');
+        }
+        
         // Gate for admin access (full access)
         Gate::define('admin-access', function (User $user) {
             return $user->role_id === 1; // role_id = 1 is for admin
