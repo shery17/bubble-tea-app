@@ -1,45 +1,35 @@
-FROM php:8.2-cli
+# Base PHP image
+FROM php:8.2-fpm
 
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    unzip \
-    zip \
-    libzip-dev \
-    libonig-dev \
-    libxml2-dev \
-    libsodium-dev \
-    libpq-dev \
-    default-mysql-client \
-    default-libmysqlclient-dev \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libpng-dev \
-    libsqlite3-dev \
+    git curl unzip zip libzip-dev libonig-dev libxml2-dev \
+    default-mysql-client default-libmysqlclient-dev \
+    libfreetype6-dev libjpeg62-turbo-dev libpng-dev nodejs npm \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo_mysql pdo_pgsql pdo_sqlite zip gd exif bcmath opcache sodium \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && docker-php-ext-install pdo_mysql zip gd exif bcmath opcache \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install node.js and npm
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs
 # Set working directory
-WORKDIR /var/www/htlm
-# Copy the application files
+WORKDIR /var/www/html
+
+# Copy application files
 COPY . .
 
-# Expose port 8000
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader
+
+# Install Node dependencies and build assets
+RUN npm install && npm run build
+
+# Set folder permissions for Laravel
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/build
+
+# Expose the port Railway expects
 EXPOSE 8000
 
-# Install php dependencies
-RUN composer install
-# Install node dependencies
-RUN npm install
-
-# Run laravel migrations
-CMD php artisan migrate --force && \
-    php artisan serve --host=0.0.0 --port=8000
+# Run migrations and start Laravel server
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
