@@ -1,0 +1,37 @@
+# Node modules (will install in Docker)
+node_modules
+npm-debug.log
+yarn-error.log
+public/build
+
+# Composer dependencies (installed in Docker)
+vendor
+composer.lock
+
+# Environment files
+.env
+.env.local
+.env.*.backup
+
+# Git and version control
+.git
+.gitignore
+
+# OS and editor files
+.DS_Store
+.idea
+.vscode
+
+# Docker-related
+Dockerfile
+docker-compose.yml
+
+# Logs and cache
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+
+# Optional: build directories
+build
+dist
