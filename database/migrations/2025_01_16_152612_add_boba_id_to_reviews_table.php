@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::table('reviews', function (Blueprint $table) {
             $table->unsignedBigInteger('boba_id');
             
-            // Add foreign key with cascade delete
             $table->foreign('boba_id')
                     ->references('id')
-                    ->on('bobas')
-                    ->onDelete('cascade'); // <- deletes reviews when boba is deleted
         });
     }
 
