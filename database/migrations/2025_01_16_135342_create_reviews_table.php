@@ -16,11 +16,15 @@ return new class extends Migration
             $table->string('name');
             $table->string('content');
             $table->integer('rating');
-            $table->timestamps();
             
+            // Add foreign key to bobas table
+            $table->foreignId('boba_id')
+                  ->constrained('bobas')
+                  ->onDelete('cascade'); // <- deletes reviews when boba is deleted
+            
+            $table->timestamps();
         });
     }
-    
 
     /**
      * Reverse the migrations.
