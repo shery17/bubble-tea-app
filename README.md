@@ -8,6 +8,17 @@ A simple **Laravel web application** built as a university advanced web programm
 
 Try the app live here: 👉 **https://bubble-tea-app-production.up.railway.app/bobas**
 
+# 🧪 Test Accounts / Demo Logins
+
+You can use the following accounts to test the app:
+
+| Name           | Email                          | Password    | Role               |
+|----------------|--------------------------------|------------|------------------|
+| Sunil Laxman   | s.laxman@hudstudent.ac.uk      | password2  | Admin              |
+| Kate Hutton    | k.l.hutton@hudstudent.ac.uk    | password   | Regular User       |
+| Yousef Miandad | y.miandad@hudstudent.ac.uk     | letmein    | Regular User       |
+
+> 💡 **Note:** Admin users have full control, while regular users have limited access.
 ---
 
 ## 🚀 Features
@@ -48,6 +59,7 @@ Here is the local setup I used:
 4. run in the terminal "composer install", "npm install", "npm run dev"
 6. Replace current dockerfile with your chosen db, you can use my example via Docker:
 
+```yaml
 services:
   mysql:
     image: mysql:8.4
@@ -59,6 +71,6 @@ services:
       MYSQL_ROOT_PASSWORD: rootsecret
     ports:
       - "3306:3306"
-
+```
 7. run php artisan migrate seed -fresh
 5. Open the site through Laravel Herd (Herd handles the web server using Nginx)
