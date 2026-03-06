@@ -28,12 +28,3 @@ Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('revi
 Route::get('/login', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout']);
-
-use Illuminate\Support\Facades\Artisan;
-
-Route::get('/run-cli', function () {
-    // Example: refresh database
-    Artisan::call('migrate:fresh', ['--seed' => true]);
-
-    return '✅ Artisan command executed!';
-});
